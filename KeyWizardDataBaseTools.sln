@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWizardDataBaseTools", "KeyWizardDataBaseTools\KeyWizardDataBaseTools.csproj", "{93B30A4D-A70B-4DBA-8A6D-D3463AA0B796}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWizTools", "KeyWizTools\KeyWizTools.csproj", "{CCE35654-2664-4A98-BF76-F104E67E47EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93B30A4D-A70B-4DBA-8A6D-D3463AA0B796}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{93B30A4D-A70B-4DBA-8A6D-D3463AA0B796}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{93B30A4D-A70B-4DBA-8A6D-D3463AA0B796}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{93B30A4D-A70B-4DBA-8A6D-D3463AA0B796}.Debug|x86.ActiveCfg = Debug|x86
+		{93B30A4D-A70B-4DBA-8A6D-D3463AA0B796}.Debug|x86.Build.0 = Debug|x86
+		{93B30A4D-A70B-4DBA-8A6D-D3463AA0B796}.Debug|x86.Deploy.0 = Debug|x86
+		{93B30A4D-A70B-4DBA-8A6D-D3463AA0B796}.Release|Any CPU.ActiveCfg = Release|x86
+		{93B30A4D-A70B-4DBA-8A6D-D3463AA0B796}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{93B30A4D-A70B-4DBA-8A6D-D3463AA0B796}.Release|Mixed Platforms.Build.0 = Release|x86
+		{93B30A4D-A70B-4DBA-8A6D-D3463AA0B796}.Release|x86.ActiveCfg = Release|x86
+		{93B30A4D-A70B-4DBA-8A6D-D3463AA0B796}.Release|x86.Build.0 = Release|x86
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Debug|x86.ActiveCfg = Debug|x86
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Debug|x86.Build.0 = Debug|x86
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Release|x86.ActiveCfg = Release|x86
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Release|x86.Build.0 = Release|x86
+		{CCE35654-2664-4A98-BF76-F104E67E47EE}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
