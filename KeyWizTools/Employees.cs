@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace KeyWizTools
 {
-   public class Employees
+    public class Employees
     {
         private List<Employee> EmployeePool = new List<Employee>();
         public Employees()

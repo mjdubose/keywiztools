@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Windows.Forms;
 namespace KeyWizTools
 {
-  public static  class staticmethods
+    public static  class staticmethods
     {
       public static void AddEmployee(this SqlCommand cmdIns, List<Employee> temp, string commandtext)
       {
