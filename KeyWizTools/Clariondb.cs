@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace KeyWizTools
 {
-   public class Clariondb : EmployeeDataBases, IDisposable
+    public class Clariondb : EmployeeDataBases, IDisposable
     {
         Employees dbemployee = new Employees();
         OdbcConnection connection;
@@ -20,7 +20,7 @@ namespace KeyWizTools
         public void Dispose()
         {
             dbemployee = null;
-           
+
             connection.Dispose();
 
         }
@@ -30,7 +30,7 @@ namespace KeyWizTools
             connection.Open();
             try
             {
-               
+
                 try
                 {
                     string sqlcommand = "Select PERSONAL_NUM, FIRST_NAME, MIDDLE_INITIAL, LAST_NAME, ADDRESS, ADDRESS2, CITY, STATE, ZIP, HOME_PHONE, OFFICE_PHONE, FAX_NUM, PAGER_NUM, MOBILE_PHONE, EMAIL_ADDRESS, DEPT, SALUTATION, TITLE from PERSONAL";
@@ -60,7 +60,7 @@ namespace KeyWizTools
                 connection.Close();
 
             }
-            
+
         }
 
         public List<Employee> GetList()
@@ -70,25 +70,21 @@ namespace KeyWizTools
         public void WriteKeys(List<Employee> x)
         {
             MessageBox.Show("Keys are added in Key Wizard");
-        } 
+        }
         public void WriteData(List<Employee> x)
         {
-           
             int updated = 0;
-            
             Employees tobeupdated = new Employees();
             foreach (Employee temp in x)
             {
-              
-                    if (!dbemployee.EmployeeCompare(temp))
-                    {
 
-                        tobeupdated.AddEmployee(temp);
-                        updated++;
-                    }
-                
-            }        
-           
+                if (!dbemployee.EmployeeCompare(temp))
+                {
+                    tobeupdated.AddEmployee(temp);
+                    updated++;
+                }
+            }
+
             MessageBox.Show(updated + " Records to be updated");
             if (tobeupdated.Count() > 0)
             {
@@ -99,12 +95,8 @@ namespace KeyWizTools
                     connection.Open();
                     using (OdbcCommand cmdIns = new OdbcCommand("UPDATE PERSONAL SET FIRST_NAME =  ? , MIDDLE_INITIAL=  ?  , LAST_NAME = ?, ADDRESS = ?, ADDRESS2 = ?, CITY = ?, STATE = ?, ZIP = ?, HOME_PHONE = ?, OFFICE_PHONE = ?, FAX_NUM = ?, PAGER_NUM = ?, MOBILE_PHONE = ?, EMAIL_ADDRESS = ?, DEPT = ?, SALUTATION = ?, TITLE = ? WHERE PERSONAL_NUM = ?", connection))
                     {
-                      
                         foreach (var z in sqlupdated)
                         {
-
-                           
-                           
                             try
                             {
                                 cmdIns.Parameters.AddWithValue("FIRST_NAME", z.FirstName);
@@ -132,8 +124,8 @@ namespace KeyWizTools
                             {
                                 MessageBox.Show(e.Message);
                             }
-                        }}
-                   
+                        }
+                    }
                 }
 
                 catch (Exception e)
@@ -157,33 +149,34 @@ namespace KeyWizTools
             try
             {
                 connection.Open();
-              
-                    try
+
+                try
+                {
+
+                    string odbccommand = "Select KEY_STAMP_NUM, KEY_DEPOSIT, MK_SYS_NAME, LABEL_ID, PERSONAL_NUM  from Keys_Issued WHERE QTY_ISSUE = 1";
+
+                    using (OdbcCommand cmd = new OdbcCommand(odbccommand, connection))
                     {
 
-                        string odbccommand = "Select KEY_STAMP_NUM, KEY_DEPOSIT, MK_SYS_NAME, LABEL_ID, PERSONAL_NUM  from Keys_Issued WHERE QTY_ISSUE = 1";
-                       
-                        using (OdbcCommand cmd = new OdbcCommand(odbccommand, connection))
+                        using (OdbcDataReader reader = cmd.ExecuteReader())
                         {
-                          
-                            using (OdbcDataReader reader = cmd.ExecuteReader())
+                            while (reader.Read())
                             {
-                                while (reader.Read())
+                                if ((reader[0]) != null)
                                 {
-                                    if ((reader[0]) != null)
-                                    {
-                                        IssuedKeys.Add(new Key(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString()));
-                                        
-                                    }
+                                    IssuedKeys.Add(new Key(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString()));
+
                                 }
                             }
-                        
-                    }}
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.Message);
+                        }
+
                     }
-                
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+
             }
             catch (Exception e)
             {
@@ -202,7 +195,6 @@ namespace KeyWizTools
                     employee.AddKey(key);
                     employee.Keys = true;
                 }
-
             }
         }
         public List<Employee> GetEmployeeByID(List<string> ID)

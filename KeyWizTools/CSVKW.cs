@@ -16,7 +16,7 @@ namespace KeyWizTools
         {
             fileName = sourcefilename;
             CSVFILENAME = csvfilename;
-           
+
         }
         public void ReadData()
         {
@@ -47,7 +47,7 @@ namespace KeyWizTools
             {
                 MessageBox.Show(ex.Message);
             }
-             temp = new List<Employee>();
+            temp = new List<Employee>();
             try
             {
                 using (var connection = new OleDbConnection(conn))
@@ -75,7 +75,7 @@ namespace KeyWizTools
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
         public List<Employee> GetList()
         {
@@ -111,22 +111,22 @@ namespace KeyWizTools
         {
             var FileName = Path.GetFileName(CSVFILENAME);
             var PathName = Path.GetDirectoryName(CSVFILENAME);
-            if (FileName == null) return;          
+            if (FileName == null) return;
 
             try
             {
                 using (var sw = new StreamWriter(PathName + FileName, false))
                 {
                     sw.WriteLine("PERSONAL_NUM,FIRST_NAME,MIDDLE_INITIAL,LAST_NAME,KEYSYMBOL, SERIAL_NUMBER,MASTERKEY_SYSTEM, DEPOSIT");
-      
+
                     // for each employee with keys
-                    foreach (var emp in x.Where(y=>y.Keys))
+                    foreach (var emp in x.Where(y => y.Keys))
                     {
-                       //list the employee information and key information
-                        
-                            foreach (Key keys in emp.Getkeys())
-                                sw.WriteLine("\"" + emp.EmployeeNumber + "\",\"" + emp.FirstName + "\",\"" + emp.MiddleInitial + "\",\"" + emp.LastName + "\",\"" + keys.Keysymbol + "\",\"" + keys.Keyserial + "\",\"" + keys.Mastersystemname + "\",\"" + keys.Keydeposit + "\"");
-                        
+                        //list the employee information and key information
+
+                        foreach (Key keys in emp.Getkeys())
+                            sw.WriteLine("\"" + emp.EmployeeNumber + "\",\"" + emp.FirstName + "\",\"" + emp.MiddleInitial + "\",\"" + emp.LastName + "\",\"" + keys.Keysymbol + "\",\"" + keys.Keyserial + "\",\"" + keys.Mastersystemname + "\",\"" + keys.Keydeposit + "\"");
+
                     }
                 }
             }
@@ -134,7 +134,7 @@ namespace KeyWizTools
             {
                 MessageBox.Show(exp.Message);
             }
-        }     
+        }
         public void WriteData(List<Employee> x)
         {
             var FileName = Path.GetFileName(CSVFILENAME);
@@ -165,9 +165,8 @@ namespace KeyWizTools
         }
         public List<Employee> GetEmployeeByID(List<string> ID)
         {
-            List<Employee> temp = new List<Employee>();            
+            List<Employee> temp = new List<Employee>();
             return temp;
         }
-
     }
 }

@@ -47,8 +47,6 @@ namespace KeyWizTools
 
         public string ReadDataGenerateReport(EmployeeDataBases databasetobequeried)
         {
-
-          
             try
             {
                 List<string> tablelist = getSheetNames(fileName);
@@ -72,24 +70,23 @@ namespace KeyWizTools
             }
 
 
-            var ListOfEmployeesForWhomWeAreLookingForKeys = (from DataRow row in DTable.Rows where(row[0].ToString() != string.Empty) select row[0].ToString().Trim()).ToList();
+            var ListOfEmployeesForWhomWeAreLookingForKeys = (from DataRow row in DTable.Rows where (row[0].ToString() != string.Empty) select row[0].ToString().Trim()).ToList();
             TermedEmployees = databasetobequeried.GetEmployeeByID(ListOfEmployeesForWhomWeAreLookingForKeys);
 
             databasetobequeried.AddKeysToEmployees(TermedEmployees);
 
             StringBuilder sb = new StringBuilder();
 
-            foreach (Employee x in TermedEmployees.Where(x=>x.Keys==true))
+            foreach (Employee x in TermedEmployees.Where(x => x.Keys == true))
             {
-               
-                    List<Key> KeysThatTheEmployeeHas = x.Getkeys();
 
-                    foreach (Key onekey in KeysThatTheEmployeeHas)
-                    {
-                        sb.AppendLine(x.FirstName + " " + x.LastName + " " + onekey.ToString() + " " + x.Dept);
-                     
-                    }
-                
+                List<Key> KeysThatTheEmployeeHas = x.Getkeys();
+
+                foreach (Key onekey in KeysThatTheEmployeeHas)
+                {
+                    sb.AppendLine(x.FirstName + " " + x.LastName + " " + onekey.ToString() + " " + x.Dept);
+
+                }
             }
             return sb.ToString();
         }

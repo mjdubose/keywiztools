@@ -8,7 +8,7 @@ namespace KeyWizTools
     {
         private List<Employee> EmployeePool = new List<Employee>();
         public Employees()
-        {}
+        { }
 
         public Employees(List<Employee> test)
         {
@@ -44,9 +44,9 @@ namespace KeyWizTools
         }
 
         public Employee ReturnEmployeeByID(string ID)
-        {           
+        {
             return EmployeePool.Find(item => item.EmployeeNumber == ID.Trim());
-            
+
         }
         public bool EmployeeExists(string ID)
         {
@@ -65,7 +65,7 @@ namespace KeyWizTools
                 return (String.IsNullOrWhiteSpace(y) && String.IsNullOrWhiteSpace(x));
             }
             return stringcompare;
-        }       
+        }
 
         public List<Employee> GetEmployeeList()
         {

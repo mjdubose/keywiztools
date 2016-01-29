@@ -85,6 +85,5 @@ namespace KeyWizTools
         {
             return EmployeeNumber + "," + FirstName + "," + MiddleInitial + "," + LastName + "," + Address + "," + Address2 + "," + City + "," + State + "," + Zip + "," + Home_Phone + "," + Office_Phone + "," + Fax_Num + "," + Pager_Num + "," + Mobile_Phone + "," + Email + "," + Dept + "," + Salutation + "," + Title;
         }
-
     }
 }

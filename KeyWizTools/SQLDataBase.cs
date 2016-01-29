@@ -74,86 +74,73 @@ namespace KeyWizTools
         }
         private void InsertEmployeeInDatabase(List<Employee> emp)
         {
-
-
-
             connection.Open();
+            try
+            {
+                var dt = new DataTable();
+                dt.Columns.Add("PERSONAL_NUM");
+                dt.Columns.Add("FIRST_NAME");
+                dt.Columns.Add("MIDDLE_INITIAL");
+                dt.Columns.Add("LAST_NAME");
+                dt.Columns.Add("ADDRESS");
+                dt.Columns.Add("ADDRESS2");
+                dt.Columns.Add("CITY");
+                dt.Columns.Add("STATE");
+                dt.Columns.Add("ZIP");
+                dt.Columns.Add("HOME_PHONE");
+                dt.Columns.Add("OFFICE_PHONE");
+                dt.Columns.Add("FAX_NUM");
+                dt.Columns.Add("PAGER_NUM");
+                dt.Columns.Add("MOBILE_PHONE");
+                dt.Columns.Add("EMAIL_ADDRESS");
+                dt.Columns.Add("DEPT");
+                dt.Columns.Add("SALUTATION");
+                dt.Columns.Add("TITLE");
 
-          
-                try
+                foreach (var employee in emp)
                 {
-                    var dt = new DataTable();
-                    dt.Columns.Add("PERSONAL_NUM");
-                    dt.Columns.Add("FIRST_NAME");
-                    dt.Columns.Add("MIDDLE_INITIAL");
-                    dt.Columns.Add("LAST_NAME");
-                    dt.Columns.Add("ADDRESS");
-                    dt.Columns.Add("ADDRESS2");
-                    dt.Columns.Add("CITY");
-                    dt.Columns.Add("STATE");
-                    dt.Columns.Add("ZIP");
-                    dt.Columns.Add("HOME_PHONE");
-                    dt.Columns.Add("OFFICE_PHONE");
-                    dt.Columns.Add("FAX_NUM");
-                    dt.Columns.Add("PAGER_NUM");
-                    dt.Columns.Add("MOBILE_PHONE");
-                    dt.Columns.Add("EMAIL_ADDRESS");
-                    dt.Columns.Add("DEPT");
-                    dt.Columns.Add("SALUTATION");
-                    dt.Columns.Add("TITLE");
+                    dt.Rows.Add(employee.EmployeeNumber, employee.FirstName, employee.MiddleInitial, employee.LastName, employee.Address, employee.Address2, employee.City, employee.State, employee.Zip, employee.Home_Phone, employee.Office_Phone, employee.Fax_Num, employee.Pager_Num, employee.Mobile_Phone, employee.Email, employee.Dept, employee.Salutation, employee.Title);
+                }
+                var transaction = connection.BeginTransaction();
+                using (var sqlBulk = new SqlBulkCopy(connection, SqlBulkCopyOptions.KeepIdentity, transaction))
+                {
+                    sqlBulk.DestinationTableName = "KEYWIZ";
 
-
-                    foreach (var employee in emp)
+                    try
                     {
-                        dt.Rows.Add(employee.EmployeeNumber, employee.FirstName, employee.MiddleInitial, employee.LastName, employee.Address, employee.Address2, employee.City, employee.State, employee.Zip, employee.Home_Phone, employee.Office_Phone, employee.Fax_Num, employee.Pager_Num, employee.Mobile_Phone, employee.Email, employee.Dept, employee.Salutation, employee.Title);
+                        sqlBulk.WriteToServer(dt);
                     }
-                    var transaction = connection.BeginTransaction();
-                    using (var sqlBulk = new SqlBulkCopy(connection,SqlBulkCopyOptions.KeepIdentity,transaction))
+                    catch (Exception ex)
                     {
-                        sqlBulk.DestinationTableName = "KEYWIZ";
-
-                        try
-                        {
-                            sqlBulk.WriteToServer(dt);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-
+                        MessageBox.Show(ex.Message);
                     }
-                    transaction.Commit();
-                }
 
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
                 }
-                finally
-                {
-                    connection.Close();
-                }
+                transaction.Commit();
+            }
 
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
         }
         private void UpdateEmployeeinDatabase(List<Employee> emp)
         {
-
             connection.Open();
-
             using (SqlCommand cmdIns = new SqlCommand())
             {
                 cmdIns.CommandText = "";
                 cmdIns.Connection = connection;
                 cmdIns.AddEmployee(emp, "UPDATE KEYWIZ SET FIRST_NAME = @first_name{0}, MIDDLE_INITIAL= @middle_initial{0}, LAST_NAME = @last_name{0}, ADDRESS = @addresss{0}, ADDRESS2 = @address2{0}, CITY = @city{0}, STATE = @state{0}, ZIP = @zip{0}, HOME_PHONE = @home_phone{0}, OFFICE_PHONE = @office_phone{0}, FAX_NUM = @fax_num{0}, PAGER_NUM = @pager_num{0}, MOBILE_PHONE = @mobile_phone{0}, EMAIL_ADDRESS = @email_address{0}, DEPT =@dept{0}, SALUTATION = @salutation{0}, TITLE = @title{0} WHERE PERSONAL_NUM = @personal_num{0} ;");
             }
-
             connection.Close();
-
-
         }
-
-
 
         public void WriteData(List<Employee> EmployeeListFromKeyWizardDatabase)
         {
@@ -181,8 +168,6 @@ namespace KeyWizTools
                         updated++;
                     }
                 }
-
-
             }
             InsertEmployeeInDatabase(add);
             UpdateEmployeeinDatabase(update);
@@ -195,7 +180,6 @@ namespace KeyWizTools
             {
                 connection.Open();
 
-
                 using (SqlCommand mycommand = new SqlCommand("select * from KEYS", connection))
                 {
                     using (SqlDataReader myReader = mycommand.ExecuteReader())
@@ -206,45 +190,19 @@ namespace KeyWizTools
                             var x = Employeelist.SingleOrDefault(s => s.EmployeeNumber == temp.Employeeid);
                             if (x == null)
                             {
-                              //  MessageBox.Show(temp.Employeeid + " " + temp.Keysymbol + " " + temp.Keyserial);
+                                //  MessageBox.Show(temp.Employeeid + " " + temp.Keysymbol + " " + temp.Keyserial);
 
                             }
                             else
                             {
                                 x.AddKey(temp);
                                 x.Keys = true;
-                             //   MessageBox.Show(x.EmployeeNumber + " " + " " + temp.Employeeid + " " + temp.Keysymbol);
+                                //   MessageBox.Show(x.EmployeeNumber + " " + " " + temp.Employeeid + " " + temp.Keysymbol);
                             }
                         }
 
                     }
-                }
-
-                //foreach (Employee x in Employeelist)
-                //{
-                //    try
-                //    {
-
-                //        using (SqlCommand myCommand = new SqlCommand("select KEY_SYMBOL,KEY_SERIAL,KEY_DEPOSIT,MASTER_SYSTEM_NAME from KEYS WHERE PERSONAL_NUM = @en", connection))
-                //        {
-                //            myCommand.Parameters.AddWithValue("@en", x.EmployeeNumber);
-                //            using (SqlDataReader myReader = myCommand.ExecuteReader())
-                //            {
-                //                while (myReader.Read())
-                //                {
-                //                    Key temp = new Key(myReader[0].ToString(), myReader[2].ToString(), myReader[3].ToString(), myReader[1].ToString(), x.EmployeeNumber);
-                //                    x.AddKey(temp);
-                //                    x.Keys = true;
-                //                }
-                //            }
-                //        }
-                //    }
-
-                //    catch (Exception e)
-                //    {
-                //        MessageBox.Show(e.ToString());
-                //    }
-                //}
+                }             
             }
             catch (Exception e)
             {
@@ -273,7 +231,7 @@ namespace KeyWizTools
             {
                 MessageBox.Show(e.Message);
             }
-           
+
             List<Key> show = new List<Key>();
             foreach (Employee zx in temp)
             {
@@ -282,8 +240,6 @@ namespace KeyWizTools
                     show.AddRange(zx.Getkeys());
                 }
             }
-              
-         
 
             string sqlIns = "INSERT INTO KEYS (PERSONAL_NUM,KEY_SYMBOL,KEY_SERIAL,KEY_DEPOSIT,MASTER_SYSTEM_NAME) VALUES (@personal_num,@keysymbol,@keyserial,@keydeposit,@mastersystemname)";
             using (SqlCommand cmdIns = new SqlCommand(sqlIns, connection))
@@ -312,10 +268,8 @@ namespace KeyWizTools
 
         public List<Employee> GetEmployeeByID(List<string> ID)
         {
-
             SQLemployees = new Employees();
             connection.Open();
-
             using (SqlCommand myCommand = new SqlCommand("select * from KEYWIZ WHERE PERSONAL_NUM = @en", connection))
             {
                 foreach (var x in ID)
@@ -336,10 +290,8 @@ namespace KeyWizTools
                 }
 
             }
-
             connection.Close();
             return SQLemployees.GetEmployeeList();
-
         }
     }
 }

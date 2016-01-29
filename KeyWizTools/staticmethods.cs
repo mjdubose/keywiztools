@@ -13,8 +13,7 @@ namespace KeyWizTools
           int i = 0;//increments the sql variable to keep them unique.
           int j = 0; //causes sql command to fire at 2000 employees.
           if (temp.Count > 0)
-          {
-             
+          {             
               foreach (var emp in temp)
               {
                   if (j * 18 > 2000)
@@ -48,8 +47,7 @@ namespace KeyWizTools
                   j++;
               }
              
-              cmdIns.ExecuteNonQuery();
-            
+              cmdIns.ExecuteNonQuery();            
               cmdIns.Parameters.Clear();
               cmdIns.CommandText = string.Empty;
               
