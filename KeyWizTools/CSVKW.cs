@@ -107,7 +107,6 @@ namespace KeyWizTools
                 MessageBox.Show(exp.Message);
             }
         }
-
         public void WriteKeys(List<Employee> x)
         {
             var FileName = Path.GetFileName(CSVFILENAME);
@@ -135,8 +134,7 @@ namespace KeyWizTools
             {
                 MessageBox.Show(exp.Message);
             }
-        }
-     
+        }     
         public void WriteData(List<Employee> x)
         {
             var FileName = Path.GetFileName(CSVFILENAME);
