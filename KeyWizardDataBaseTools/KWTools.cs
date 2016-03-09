@@ -203,14 +203,14 @@ namespace KeyWizardDataBaseTools
         }
         private void SetText(object text)
         {
-            if (this.txtDisplay.InvokeRequired)
+            if (txtDisplay.InvokeRequired)
             {
                 ObjectDelegate d = new ObjectDelegate(SetText);
                 Invoke(d, text);
             }
             else
             {
-                this.txtDisplay.Text += (string)text;
+                txtDisplay.Text += (string)text;
             }
         }
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)

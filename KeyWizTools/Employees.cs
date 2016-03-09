@@ -62,7 +62,7 @@ namespace KeyWizTools
             bool stringcompare = y == x;
             if (!stringcompare)
             {
-                return (String.IsNullOrWhiteSpace(y) && String.IsNullOrWhiteSpace(x));
+                return (string.IsNullOrWhiteSpace(y) && string.IsNullOrWhiteSpace(x));
             }
             return stringcompare;
         }

@@ -188,17 +188,12 @@ namespace KeyWizTools
                         {
                             Key temp = new Key(myReader[2].ToString(), myReader[4].ToString(), myReader[5].ToString(), myReader[3].ToString(), myReader[1].ToString());
                             var x = Employeelist.SingleOrDefault(s => s.EmployeeNumber == temp.Employeeid);
-                            if (x == null)
-                            {
-                                //  MessageBox.Show(temp.Employeeid + " " + temp.Keysymbol + " " + temp.Keyserial);
-
-                            }
-                            else
+                            if (x != null)
                             {
                                 x.AddKey(temp);
                                 x.Keys = true;
-                                //   MessageBox.Show(x.EmployeeNumber + " " + " " + temp.Employeeid + " " + temp.Keysymbol);
-                            }
+
+                            }                           
                         }
 
                     }
@@ -222,9 +217,7 @@ namespace KeyWizTools
 
                 using (SqlCommand cmdIns = new SqlCommand("TRUNCATE TABLE [KEYS]", connection))
                 {
-
                     cmdIns.ExecuteNonQuery();
-
                 }
             }
             catch (Exception e)

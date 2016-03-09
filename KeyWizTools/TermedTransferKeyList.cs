@@ -54,11 +54,11 @@ namespace KeyWizTools
                 {
                     string query = "select * from [" + tablelist[0] + "]";
 
-                    using (OleDbDataAdapter MyCommand = new System.Data.OleDb.OleDbDataAdapter(query, MyConnection))
+                    using (OleDbDataAdapter MyCommand = new OleDbDataAdapter(query, MyConnection))
                     {
 
                         MyCommand.TableMappings.Add("Table", "TestTable");
-                        DTable = new System.Data.DataTable();
+                        DTable = new DataTable();
                         MyCommand.Fill(DTable);
                         MyConnection.Close();
                     }
